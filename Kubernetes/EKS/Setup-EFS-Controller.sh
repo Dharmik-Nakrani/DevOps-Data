@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Guide: https://aws.amazon.com/premiumsupport/knowledge-center/eks-persistent-storage/
 echo "Enter Cluster Name:"
 read cname
 
