@@ -1,0 +1,1 @@
+eksctl create cluster --name $Cname --region ap-south-1 --nodegroup-name $NodeName --node-type t2.medium --managed --nodes $non --ssh-public-key $key --node-ami-family Ubuntu2004 --ssh-access 
