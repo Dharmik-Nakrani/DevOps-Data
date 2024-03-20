@@ -1,0 +1,61 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/subnets: #< Subnet ids >   subnet-05cdfb7f2b29b5209,subnet-0f3bab76a94cde224
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5'
+    alb.ingress.kubernetes.io/success-codes: '404,403,200'
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/group.name: nginx-ingress
+    alb.ingress.kubernetes.io/certificate-arn: #< ACM CERTIFICATE > arn:aws:acm:ap-south-1:812631189744:certificate/f39e55d8-e3cc-43b7-9130-c7d2d83315c7
+    alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=300
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=3600,deletion_protection.enabled=true
+spec:
+  ingressClassName: alb
+  rules:
+  - host: demo.dharmiknakrani.tech
+    http:
+        paths:
+          -
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+
+---------------------------------------------
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.org/client-max-body-size: 50m
+  name: nginx-ingress
+
+
+spec:
+  rules:
+  - host: www.varunsonavni.online
+    http:
+        paths:
+          -
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
