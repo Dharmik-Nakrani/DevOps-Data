@@ -1,0 +1,128 @@
+sudo apt update
+    8  df -h
+    9  sudo apt upgrade 
+   10  sudo apt autoremove 
+   11  sudo apt autoclean 
+   12  sudo swapoff -a
+   13  sudo sed -i '/ swap / s/^/#/' /etc/fstab
+   14  cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+   15  overlay
+   16  br_netfilter
+   17  EOF
+   18  sudo modprobe overlay
+   19  sudo modprobe br_netfilter
+   20  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+   21  net.bridge.bridge-nf-call-iptables  = 1
+   22  net.bridge.bridge-nf-call-ip6tables = 1
+   23  net.ipv4.ip_forward                 = 1
+   24  EOF
+   25  sudo sysctl --system
+   26  sudo apt-get update
+   27  sudo apt-get install -y apt-transport-https ca-certificates curl git
+   28  curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+   29  echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   30  sudo apt-get update
+   31  sudo apt install -y kubelet kubeadm kubectl
+   32  sudo apt install docker.io
+   33  sudo mkdir /etc/containerd
+   34  sudo sh -c "containerd config default > /etc/containerd/config.toml"
+   35  sudo sed -i 's/ SystemdCgroup = false/ SystemdCgroup = true/' /etc/containerd/config.toml
+   36  sudo systemctl restart containerd.service
+   37  sudo systemctl restart kubelet.service
+   38  sudo kubeadm config images pull
+   39  sudo kubeadm init
+   40  mkdir -p $HOME/.kube
+   41  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   42  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   43  kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+   44  curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml -O
+   45  sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.0.0\/16/g' custom-resources.yaml
+   46  kubectl create -f custom-resources.yaml
+   47  sudo su -
+   48  kubectl get node
+   49  kubectl describe etechu05-minipc-pn50
+   50  kubectl describe node etechu05-minipc-pn50
+   51  kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+   52  kubectl describe node etechu05-minipc-pn50
+   53  kubectl get node
+   54  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   55  kubectl get node
+   56  watch kubectl get node
+   57  kubectl get node
+   58  kubectl get all
+   59  clear
+   60  ls
+   61  mkdir kubernetes
+   62  cp custom-resources.yaml kubernetes/
+   63  cd kubernetes/
+   64  ls
+   65  mkdir nginx
+   66  cd ng
+   67  cd nginx/
+   68  clear
+   69  vi deployment.yaml
+   70  sudo apt install vim
+   71  kubectl apply deployment.yaml 
+   72  kubectl apply -f deployment.yaml 
+   73  kubectl get all
+   74  kubectl describe pod/nginx-deployment-7c79c4bf97-j9n97
+   75  kubectl get node
+   76  kubectl taint nodes etechu05-minipc-pn50 node-role.kubernetes.io/control-plane:NoSchedule-
+   77  kubectl get all
+   78  kubectl describe pod/nginx-deployment-7c79c4bf97-j9n97
+   79  kubectl get all
+   80  kubectl describe pod/nginx-deployment-7c79c4bf97-j9n97
+   81  kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   82  kubectl get all
+   83  kubectl get node
+   84  kubectl get all
+   85  kubectl delete pod/nginx-deployment-7c79c4bf97-j9n97
+   86  kubectl get all
+   87  kubectl describe pod/nginx-deployment-7c79c4bf97-d7cbx
+   88  vim /run/flannel/subnet.env
+   89  rm -f /etc/cni/net.d/*flannel*
+   90  sudo rm -f /etc/cni/net.d/*flannel*
+   91  kubeadm reset
+   92  sudo kubeadm reset
+   93  sudo kubeadm init
+   94  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   95  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   96  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   97  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   98  kubectl get node
+   99  kubectl get all
+  100  kubectl apply -f deployment.yaml 
+  101  kubectl get all
+  102  kubectl get pod/nginx-deployment-7c79c4bf97-ts5k5
+  103  kubectl describe pod/nginx-deployment-7c79c4bf97-ts5k5
+  104  kubectl taint nodes etechu05-minipc-pn50 node-role.kubernetes.io/control-plane:NoSchedule-
+  105  kubectl describe pod/nginx-deployment-7c79c4bf97-ts5k5
+  106  kubectl taint nodes etechu05-minipc-pn50 node-role.kubernetes.io/control-plane:NoSchedule-
+  107  kubectl describe pod/nginx-deployment-7c79c4bf97-ts5k5
+  108  sudo rm -f /etc/cni/net.d/*flannel*
+  109  kubectl describe pod/nginx-deployment-7c79c4bf97-ts5k5
+  110  sudo systemctl enable kubelet
+  111  sudo systemctl start kubelet
+  112  sysctl net.bridge.bridge-nf-call-iptables=1
+  113  sudo sysctl net.bridge.bridge-nf-call-iptables=1
+  114  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+  115  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  116  kubectl describe pod/nginx-deployment-7c79c4bf97-ts5k5
+  117  kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  118  sudo rm -f /etc/cni/net.d/*flannel*
+  119  sudo kubeadm reset
+  120  sudo kubeadm init --pod-network-cidr=10.10.0.0/16
+  121  mkdir -p $HOME/.kube
+  122  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  123  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  124  kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+  125  cd ..
+  126  ls
+  127  sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.0.0\/16/g' custom-resources.yaml
+  128  kubectl create -f custom-resources.yaml
+  129  kubectl get node
+  130  kubectl apply -f nginx/
+  131  kubectl get all
+  132  kubectl taint nodes etechu05-minipc-pn50 node-role.kubernetes.io/control-plane:NoSchedule-
+  133  kubectl get all
+  134  kubectl describe pod/nginx-deployment-7c79c4bf97-4ctvj
