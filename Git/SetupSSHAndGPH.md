@@ -32,6 +32,7 @@ ssh-add ~/.ssh/company
 > ```sh
 > gpg --full-generate-key
 > ```
+> - 0. Enter 4096
 > - 1.Select 1
 > - 2.Select 0
 > - 3.Press Yes
