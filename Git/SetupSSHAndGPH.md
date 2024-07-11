@@ -7,15 +7,15 @@
 ssh-keygen -t rsa -b 4096 -c "companymail@mail.com"
 ```
 - Enter Path and key name for better identification
->   /home/username/.ssh/company
->   Enter passphrase (optionlly)
->   again enter passphrase (optionlly)
+>  - /home/username/.ssh/company
+>  - Enter passphrase (optionlly)
+>  - again enter passphrase (optionlly)
 -  Open SSH key and copy it
 ```
 cat ~/.ssh/company.pub
 ```
 -  Put this SSH Key in Github
->   Account -> Setting -> SSH and GPG Key -> New SSH Key
+>  - Account -> Setting -> SSH and GPG Key -> New SSH Key
 -  Add this SSH key in System
 ```
 ssh-add ~/.ssh/company
@@ -32,12 +32,12 @@ ssh-add ~/.ssh/company
 > ```sh
 > gpg --full-generate-key
 > ```
-> 1.Select 1
-> 2.Select 0
-> 3.Press Yes
-> 4.Enter identify of company
-> 5.Press O
-> 6.Enter Passcode which is use every time when you commit
+> - 1.Select 1
+> - 2.Select 0
+> - 3.Press Yes
+> - 4.Enter identify of company
+> - 5.Press O
+> - 6.Enter Passcode which is use every time when you commit
 
 -   Verify Your GPG Key
 ```
