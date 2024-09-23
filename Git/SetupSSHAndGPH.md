@@ -32,7 +32,7 @@ ssh-add ~/.ssh/company
 > ```sh
 > gpg --full-generate-key
 > ```
-> - 0. Enter 4096
+> - 0.Enter 4096
 > - 1.Select 1
 > - 2.Select 0
 > - 3.Press Yes
@@ -60,8 +60,8 @@ gpg --list-secret-keys --keyid-format long
 > ssb   rsa4096/E0761A0FDF469301 2024-07-11 [E]
 - Enter in your repo
 ```
-git config --local commit.gpgSign true
-git config --local user.signingKey `highlighted key`
+git config --global commit.gpgSign true
+git config --global user.signingKey `highlighted key`
 ```
 
 > Note: `Test When you commit any thing it required Passcode`.
