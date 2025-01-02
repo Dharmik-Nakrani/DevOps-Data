@@ -32,12 +32,12 @@ ssh-add ~/.ssh/company
 > ```sh
 > gpg --full-generate-key
 > ```
-> - 0.Enter 4096
-> - 1.Select 1
-> - 2.Select 0
-> - 3.Press Yes
-> - 4.Enter identify of company
-> - 5.Press O
+> - 0.Select 1 (RSA and RSA)
+> - 1.Enter keysize: 4096
+> - 2.Select 0 (key does not expire)
+> - 3.Press : y (Yes)
+> - 4.Enter identify of company (Realname: Giithub Username, Email Address: Github Email Address)
+> - 5.Press :O (Okay)
 > - 6.Enter Passcode which is use every time when you commit
 
 -   Verify Your GPG Key
