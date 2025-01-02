@@ -54,10 +54,13 @@ gpg --armor --export
 ```sh
 gpg --list-secret-keys --keyid-format long
 ```
-> sec   rsa4096/`EB6D4BF827C5CCBD` 2024-07-11 [SC]
->      A8ED30FD1FD9DDBA743C066AEB6D4BF827C5CCBD
-> uid                 [ultimate] Dharmik Nakrani (Dharmik GPG Key) > <dharmik.n@healtech.au>
-> ssb   rsa4096/E0761A0FDF469301 2024-07-11 [E]
+> [!NOTE]
+```
+sec   rsa4096/`EB6D4BF827C5CCBD` 2024-07-11 [SC]
+     A8ED30FD1FD9DDBA743C066AEB6D4BF827C5CCBD
+uid                 [ultimate] Dharmik Nakrani (Dharmik GPG Key) > <dharmik.n@healtech.au>
+ssb   rsa4096/E0761A0FDF469301 2024-07-11 [E]
+```
 - Enter in your repo
 ```
 git config --global commit.gpgSign true
