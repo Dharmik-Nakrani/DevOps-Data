@@ -31,6 +31,8 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 # Add the current user to the Docker group
 sudo usermod -aG docker $USER
 
+newgrp docker
+
 # Inform the user to log out and back in
 echo "Docker installation completed successfully."
 echo "Please log out and log back in or run 'newgrp docker' to apply group changes."
