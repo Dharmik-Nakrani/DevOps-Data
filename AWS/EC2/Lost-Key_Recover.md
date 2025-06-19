@@ -1,8 +1,3 @@
-Here is a complete and properly structured **Markdown (`.md`)** document titled `Recover-EC2-Access-Without-PEM.md`:
-
----
-
-```markdown
 # 🛠️ Recover EC2 Access Without PEM Key
 
 If you’ve lost the `.pem` key for your AWS EC2 instance and SSM is **not enabled**, you can still regain access by mounting the root volume on another (helper) instance and adding a new SSH key.
@@ -183,8 +178,4 @@ sudo systemctl start amazon-ssm-agent
 
 You have successfully recovered access to your EC2 instance without using the original PEM key.
 
-```
 
----
-
-Let me know if you'd like me to save this `.md` file and provide a downloadable version.
