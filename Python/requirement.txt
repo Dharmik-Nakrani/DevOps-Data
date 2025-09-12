@@ -1,0 +1,7 @@
+# youtube download
+yt-dlp
+
+# HLS Uploader+
+
+boto3>=1.26.0
+pathlib
