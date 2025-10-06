@@ -10,3 +10,6 @@ kill -9 $(lsof -t -i:8000)
 
 # start HTTP server Using python
 python3 -m http.server 8000
+
+# Create JWT Secrets 
+python -c "import secrets; print(secrets.token_urlsafe(64))"
